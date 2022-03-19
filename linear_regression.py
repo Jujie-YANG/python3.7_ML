@@ -1,5 +1,3 @@
-# import tensorflow as tf
-# import keras
 import pandas as pd
 import numpy as np
 import sklearn
@@ -12,10 +10,10 @@ import pickle
 
 # Predict students' grades
 
-data = pd.read_csv("student/student-mat.csv", sep=";")
+data = pd.read_csv('Linear Regression/student/student-mat.csv', sep=";")
 
 data = data[["G1", "G2", "G3", "studytime", "failures", "absences"]]
-
+data = shuffle(data) # Optional - shuffle the data
 predict = "G3"
 
 
@@ -39,7 +37,7 @@ for _ in range(20):
 
 # Loading Our Model
 # Now we have save the best model and then we can use linear to predict grades like before
-pickle_in = open("studentgrades.pickle", "rb")
+pickle_in = open("Linear Regression/studentgrades.pickle", "rb")
 linear = pickle.load(pickle_in)
 print('Coefficient: ', linear.coef_)
 print('Intercept: ', linear.intercept_)
@@ -56,6 +54,7 @@ for x in range(len(predictions)):
 
 # Drawing and plotting model
 plot = "failures" # Change this to G1, G2, studytime or absences to see other graphs
+style.use("ggplot")
 plt.scatter(data[plot], data["G3"])
 plt.legend(plot, loc='best')
 plt.xlabel(plot)
