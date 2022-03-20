@@ -47,7 +47,7 @@ y = np.array(data[predict])
 
 x_train, x_test, y_train, y_test = sklearn.model_selection.train_test_split(X, y, test_size=0.25)
 predictions = linear.predict(x_test)
-
+# print(x_train,"\n",y_train)
 for x in range(len(predictions)):
     print(predictions[x], x_test[x], y_test[x])
 
